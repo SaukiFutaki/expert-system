@@ -1,5 +1,5 @@
 "use client";
-import { createClient } from "@/lib/supabase/client"
+import { createClient } from "@/lib/supabase/client";
 import { usePathname } from "next/navigation";
 import React from "react";
 
@@ -30,18 +30,29 @@ export default function ButtonCozy({
   );
 }
 
-export function ButtonCozyV2({ label,className }: { label: string,className?:string }) {
-    const pathname = usePathname()
-    const supabase = createClient()
-    const handleLogin = () => {
-        supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {redirectTo: location.origin + '/auth/callback?next=' + pathname}
-        })
-    }
+export function ButtonCozyV2({
+  label,
+  className,
+}: {
+  label: string;
+  className?: string;
+}) {
+  const pathname = usePathname();
+  const supabase = createClient();
+  const handleLogin = () => {
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: location.origin + "/auth/callback?next=" + pathname,
+      },
+    });
+  };
   return (
     <div className="group relative h-fit w-fit">
-      <button onClick={handleLogin} className={`relative cursor-pointer overflow-hidden font-medium  text-sm  bg-indigo-600 text-white z-10 transition-all group-hover:-translate-x-1 group-hover:-translate-y-1 group-active:-translate-x-0 group-active:-translate-y-0 ${className}`}>
+      <button
+        onClick={handleLogin}
+        className={`relative cursor-pointer overflow-hidden font-medium  text-sm  bg-indigo-600 text-white z-10 transition-all group-hover:-translate-x-1 group-hover:-translate-y-1 group-active:-translate-x-0 group-active:-translate-y-0 ${className}`}
+      >
         {label}
       </button>
       <div className="absolute inset-0 z-0 translate-x-0.5 translate-y-0.5 bg-neutral-950"></div>
