@@ -1,6 +1,7 @@
 "use client";
+import { useUser } from "@/lib/store/user";
 import { createClient } from "@/lib/supabase/client";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -37,9 +38,11 @@ export function ButtonCozyV2Login({
   label: string;
   className?: string;
 }) {
+  // const user = useUser((state) => state.user);
+  // const setUser = useUser((state) => state.setUser);
   const pathname = usePathname();
   const supabase = createClient();
-  const handleLogin = async() => {
+  const handleLogin = async () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -47,8 +50,15 @@ export function ButtonCozyV2Login({
       },
     });
     const { data } = await supabase.auth.getUser();
-    console.log(data);
+    if (data.user) {
+      redirect("/dashboard");
+    }
   };
+
+  // const handleLogout = async () => {
+  //   await supabase.auth.signOut();
+  //   setUser(undefined);
+  // }
   return (
     <div className="group relative h-fit w-fit">
       <button

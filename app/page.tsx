@@ -1,14 +1,15 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClientServer } from "@/lib/supabase/server";
 import Image from "next/image";
 import { TextGenerateEffect } from "@/components/ace/text-generate-effect";
 import { BackgroundBeamsWithCollision } from "@/components/ace/background-beams-with-collision";
 
-const words = "Sistem pakar teknik sipil";
+const words = "civil engineering expert system";
 
 export default async function Home() {
-  const supabase = createClient();
-  const { data } = await supabase.auth.getUserIdentities();
-  console.log(data);
+  // const supabase = await createClientServer();
+  // const { data } = await supabase.auth.getSession();
+  // console.log(data);
+
   return (
     <div>
       <BackgroundBeamsWithCollision className="h-screen">
@@ -18,9 +19,10 @@ export default async function Home() {
             words={words}
             className={`bg-clip-text text-5xl text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4`}
           />
-      
         </h2>
       </BackgroundBeamsWithCollision>
+      <h1>
+      </h1>
     </div>
   );
 }
