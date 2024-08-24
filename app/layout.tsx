@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import Navbar from "@/components/nav/nav";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import SessionProvider from "@/components/providers/session-provider";
 
 const inter = Fira_Code({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
+        <SessionProvider />
       </body>
     </html>
   );

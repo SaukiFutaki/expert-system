@@ -1,9 +1,9 @@
-import { createClient } from "@/lib/supabase/client";
-import React from "react";
+import Header from "./components/header";
 
 export default async function Page() {
-  const supabase = createClient();
-  const { data } = await supabase.auth.getUser();
-  console.log(data);
-  return <div>Page</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
