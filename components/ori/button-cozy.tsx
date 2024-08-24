@@ -30,7 +30,7 @@ export default function ButtonCozy({
   );
 }
 
-export function ButtonCozyV2({
+export function ButtonCozyV2Login({
   label,
   className,
 }: {
@@ -39,13 +39,15 @@ export function ButtonCozyV2({
 }) {
   const pathname = usePathname();
   const supabase = createClient();
-  const handleLogin = () => {
+  const handleLogin = async() => {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: location.origin + "/auth/callback?next=" + pathname,
       },
     });
+    const { data } = await supabase.auth.getUser();
+    console.log(data);
   };
   return (
     <div className="group relative h-fit w-fit">
@@ -55,7 +57,7 @@ export function ButtonCozyV2({
       >
         {label}
       </button>
-      <div className="absolute inset-0 z-0 translate-x-0.5 translate-y-0.5 bg-neutral-950"></div>
+      <div className="absolute inset-0 z-0 translate-x-0.5 translate-y-0.5 dark:bg-white bg-neutral-950"></div>
     </div>
   );
 }
