@@ -50,9 +50,7 @@ export function ButtonCozyV2Login({
       },
     });
     const { data } = await supabase.auth.getUser();
-    if (data.user) {
-      redirect("/dashboard");
-    }
+   
   };
 
   // const handleLogout = async () => {

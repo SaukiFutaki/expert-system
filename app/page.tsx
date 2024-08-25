@@ -3,7 +3,7 @@ import Image from "next/image";
 import { TextGenerateEffect } from "@/components/ace/text-generate-effect";
 import { BackgroundBeamsWithCollision } from "@/components/ace/background-beams-with-collision";
 
-const words = "civil engineering expert system";
+const words = "sistem pakar sipil";
 
 export default async function Home() {
   // const supabase = await createClientServer();
