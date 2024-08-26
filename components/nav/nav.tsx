@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Dock, DockIcon } from "../magicui/dock";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -6,12 +7,27 @@ import { cn } from "@/lib/utils";
 import { Separator } from "../ui/separator";
 import { ModeToggle } from "../mode-toggle";
 import { buttonVariants } from "../ui/button";
-
+import { Button } from "../ui/button";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 import { Icons } from "../icon";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 import { DashboardIcon } from "@radix-ui/react-icons";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import { useUser } from "@/lib/store/user";
 
 export default function Navbar() {
+  const user = useUser((state) => state.user);
+  console.log(user);
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
       <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
@@ -70,6 +86,66 @@ export default function Navbar() {
             </TooltipContent>
           </Tooltip>
         </DockIcon>
+        {user ? (
+          <div>
+            <Separator orientation="vertical" className="h-full py-2" />
+            <DockIcon>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Avatar>
+                        <AvatarImage
+                          src={
+                            user?.user_metadata.avatar_url ??
+                            "https://github.com/shadcn.png"
+                          }
+                        ></AvatarImage>
+                      </Avatar>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Edit profile</DialogTitle>
+                        <DialogDescription></DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="name" className="text-right">
+                            Name
+                          </Label>
+                          <Input
+                            id="name"
+                            value="Pedro Duarte"
+                            className="col-span-3"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="username" className="text-right">
+                            Username
+                          </Label>
+                          <Input
+                            id="username"
+                            value="@peduarte"
+                            className="col-span-3"
+                          />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button type="submit">Save changes</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Theme</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          </div>
+        ) : (
+         <>
+         </>
+        )}
       </Dock>
     </div>
   );
@@ -86,6 +162,13 @@ export const DATA = {
         name: "Repo",
         url: "https://github.com/SaukiFutaki/expert-system",
         icon: Icons.github,
+
+        navbar: true,
+      },
+      Info: {
+        name: "Repo",
+        url: "/info",
+        icon: Icons.info,
 
         navbar: true,
       },

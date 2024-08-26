@@ -19,7 +19,7 @@ export default async function Home() {
             duration={2}
             words={words}
             className={`bg-clip-text text-5xl text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4`}
-          /> <InfoMark className="" />
+          /> 
         </h2>
       </BackgroundBeamsWithCollision>
       </div>

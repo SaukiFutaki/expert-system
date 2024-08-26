@@ -17,7 +17,7 @@ export default async function Page() {
         {/* <Marquee className="">
           LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
         </Marquee> */}
-        <Marquee  pauseOnHover className="[--duration:20s]" >
+        <Marquee pauseOnHover className="[--duration:20s]">
           LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
         </Marquee>
         <div className="flex justify-between">
@@ -27,7 +27,7 @@ export default async function Page() {
         </div>
         {/* <h1 className="">LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN</h1> */}
         <Marquee className="[--duration:20s]" pauseOnHover reverse>
-          LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
+          LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
         </Marquee>
       </div>
     </div>
