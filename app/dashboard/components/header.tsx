@@ -7,7 +7,7 @@ export default function Header() {
   const user = useUser((state) => state.user);
   const setUser = useUser((state) => state.setUser);
   const supabase = createClient();
-  console.log(user);
+
 
   //   const supabase = await createClientServer();
   //   const { data,error } = await supabase.auth.getUser();
