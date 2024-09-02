@@ -20,10 +20,16 @@ export default async function Page() {
         <Marquee pauseOnHover className="[--duration:20s]">
           LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
         </Marquee>
-        <div className="flex justify-between">
-          <h1 className="-rotate-90">LOGIN</h1>
+        <div className="flex">
+          {/* <h1 className="-rotate-90">LOGIN</h1> */}
+          <Marquee pauseOnHover className="[--duration:20s] -rotate-90 z-20">
+            LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
+          </Marquee>
           <ButtonCozyV2Login label="Login" className="py-2.5 px-3.5" />
-          <h1 className="rotate-90">LOGIN</h1>
+          <Marquee pauseOnHover className="[--duration:20s] rotate-90 z-20">
+            LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
+          </Marquee>
+          {/* <h1 className="rotate-90">LOGIN</h1> */}
         </div>
         {/* <h1 className="">LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN</h1> */}
         <Marquee className="[--duration:20s]" pauseOnHover reverse>

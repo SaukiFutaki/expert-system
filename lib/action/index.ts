@@ -4,34 +4,56 @@ import { createClientServer } from "../supabase/server";
 
 
 
-const conditions  = {
-    soil_condition: 'pasir',
-    structural_load: 'tinggi',
+interface HouseDesign {
+  id: string;
+  house_type: string;
+  description: string;
+  budget: number;
 }
 
-const result = "use reinforced concrete pile foundation";
+interface CostEstimation {
+  id: string;
+  design_id: string;
+  total_cost: number;
+  details: string;
+}
 
-export async function createDiagnosa() {
-    const supabase = await createClientServer();
-    const { data, error } = await supabase
-    .from("history")
-    .insert([
-      {
-        user_id: "user-id", // Replace with actual user ID
-        soil_condition: conditions.soil_condition,
-        structural_load: conditions.structural_load,
-        recommendation_result: result,
-      },
-    ])
-    .select();
+export async function generateHouseDesign(
+  budget: number,
+  houseType: string
+): Promise<HouseDesign | null> {
+  const supabase = await createClientServer();
+  const { data, error } = await supabase
+    .from("house_designs")
+    .select("*")
+    .eq("house_type", houseType)
+    .lte("budget", budget)
+    .single();
 
-    if (error) {
-        console.error("Error creating diagnosis:", error);
-        return;
-      }
-    
-      // Assuming the ID is returned in the data object
-      const newId = data?.[0]?.id;
+  console.log("Data:", data);
+  console.log("Error:", error);
 
-        console.log("Diagnosis created with ID:", newId);
+  if (error) {
+    throw new Error("Failed to fetch house design");
+  }
+
+  return data as HouseDesign;
+}
+
+export async function generateCostEstimation(
+  designId: string
+): Promise<CostEstimation | null> {
+  
+const supabase =  await createClientServer();
+  const { data, error } = await supabase
+    .from("cost_estimations")
+    .select("*")
+    .eq("design_id", designId)
+    .single(); // Mengambil estimasi biaya untuk desain yang dipilih
+
+  if (error) {
+    throw new Error("Failed to fetch cost estimation");
+  }
+
+  return data as CostEstimation;
 }

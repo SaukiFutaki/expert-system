@@ -8,6 +8,7 @@ export default function Page() {
             ERD Sistem Pakar Sipil
         </h1>
         <Image src="/erd.png" alt="hero" width={1080} height={1080} />
+        <Image src="/flowchart-sp.jpg" alt="hero" width={1080} height={1080} />
     </div>
   )
 }
