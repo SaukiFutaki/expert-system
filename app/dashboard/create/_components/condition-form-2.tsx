@@ -16,6 +16,8 @@ import { z } from "zod";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { fredoka } from "./font/index";
+import { submitFormStep2 } from "@/lib/action";
+import { useRouter } from "next/navigation";
 
 type ConditionForm2Props = {
   onPrev: () => void;
@@ -26,6 +28,7 @@ export default function ConditionForm2({
   onPrev,
   onNext,
 }: ConditionForm2Props) {
+  const router = useRouter();
   const form = useForm<z.infer<typeof secondCondition>>({
     resolver: zodResolver(secondCondition),
     defaultValues: {
@@ -35,6 +38,7 @@ export default function ConditionForm2({
 
   const onSubmit = (data: z.infer<typeof secondCondition>) => {
     console.log(data);
+    submitFormStep2(data);
     onNext();
   };
 
@@ -106,9 +110,11 @@ export default function ConditionForm2({
 
               {/* Previous and Next Buttons */}
               <div className="flex justify-between pt-6">
-                <Button type="button" onClick={onPrev} className="w-28">
-                  Back
-                </Button>
+              <div className="cursor-not-allowed">
+                  <Button disabled onClick={router.back} className="w-28 ">
+                    Back
+                  </Button>
+                </div>
                 <Button type="submit" className="w-28">
                   Next
                 </Button>

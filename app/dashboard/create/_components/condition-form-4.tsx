@@ -22,6 +22,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { fourthCondition } from "@/schema/condition";
 import { FormDescription } from "@/components/ui/form";
 import { z } from "zod";
+import { submitFinalForm } from "@/lib/action";
+import { useRouter } from "next/navigation";
 
 type ConditionForm4Props = {
   onPrev: () => void;
@@ -32,6 +34,7 @@ export default function ConditionForm4({
   onPrev,
   onNext,
 }: ConditionForm4Props) {
+    const router = useRouter()
     const form = useForm<z.infer<typeof fourthCondition>>({
     resolver: zodResolver(fourthCondition),
     defaultValues: {
@@ -42,7 +45,7 @@ export default function ConditionForm4({
 
     const onSubmit = (data: z.infer<typeof fourthCondition>) => {
         console.log(data);
-        onNext();
+        submitFinalForm(data);
     }
   return (
     <div className="flex items-center justify-center ">
@@ -106,11 +109,13 @@ export default function ConditionForm4({
 
               {/* Previous and Next Buttons */}
               <div className="flex justify-between pt-6">
-                <Button type="button" onClick={onPrev} className="w-28">
-                  Back
-                </Button>
+              <div className="cursor-not-allowed">
+                  <Button disabled onClick={router.back} className="w-28 ">
+                    Back
+                  </Button>
+                </div>
                 <Button type="submit" className="w-28">
-                  Next
+                  Submit
                 </Button>
               </div>
             </form>

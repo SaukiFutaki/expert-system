@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { submitForm } from "@/lib/action";
 
 //  ! Schema validation
 export const formSchema = z.object({
@@ -81,7 +80,7 @@ export default function FormCreate() {
 
   // TODO : Submit form
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    submitForm(data);
+    
     const rab = calculateRab(data.luasTanah, data.timeRumah, data.priceRange); // Calculate RAB
     setRabResult(rab);
   };
