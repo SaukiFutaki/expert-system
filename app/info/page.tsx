@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import FlowChart from './_components/flowchart'
 
 export default function Page() {
   return (
@@ -7,8 +8,9 @@ export default function Page() {
         <h1 className='text-4xl'>
             ERD Sistem Pakar Sipil
         </h1>
-        <Image src="/erd.png" alt="hero" width={1080} height={1080} />
-        <Image src="/flowchart-sp.jpg" alt="hero" width={1080} height={1080} />
+        {/* <Image src="/erd.png" alt="hero" width={1080} height={1080} /> */}
+     
+        <FlowChart />
     </div>
   )
 }

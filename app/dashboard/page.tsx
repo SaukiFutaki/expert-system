@@ -20,10 +20,11 @@ export default async function Page() {
             Buat
           </ButtonCozy>
         </Link>
-
-        <ButtonCozy className="px-4 p y-2 bg-gray-500 text-white rounded hover:bg-gray-600">
-          History
-        </ButtonCozy>
+        <Link href={"/dashboard/history"}>
+          <ButtonCozy className="px-4 p y-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+            History
+          </ButtonCozy>
+        </Link>
       </div>
     </div>
   );

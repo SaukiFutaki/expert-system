@@ -1,8 +1,5 @@
-import { createClientServer } from "@/lib/supabase/server";
-import Image from "next/image";
-import { TextGenerateEffect } from "@/components/ace/text-generate-effect";
 import { BackgroundBeamsWithCollision } from "@/components/ace/background-beams-with-collision";
-import InfoMark from "@/components/info-mark";
+import { TextGenerateEffect } from "@/components/ace/text-generate-effect";
 
 const words = `Sistem pakar sipil `;
 
@@ -10,6 +7,8 @@ export default async function Home() {
   // const supabase = await createClientServer();
   // const { data } = await supabase.auth.getSession();
   // console.log(data);
+  // const history = await getHistoryUser();
+  // console.log(history);
 
   return (
     <div>

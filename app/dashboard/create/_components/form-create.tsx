@@ -18,9 +18,10 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { submitForm } from "@/lib/action";
 
 //  ! Schema validation
-const formSchema = z.object({
+export const formSchema = z.object({
   timeRumah: z.string().min(2, {
     message: "House type must be selected.",
   }),
@@ -31,6 +32,8 @@ const formSchema = z.object({
 });
 
 export default function FormCreate() {
+  const [priceRange, setPriceRange] = useState([0, 200_000_000]);
+  const [rabResult, setRabResult] = useState<number | string | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,15 +43,47 @@ export default function FormCreate() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-  };
+ 
 
-  const [priceRange, setPriceRange] = useState([0, 200_000_000]);
 
   const handlePriceChange = (value: number[]) => {
     setPriceRange(value);
     form.setValue("priceRange", [value[0], value[1]]);
+  };
+
+
+  const calculateRab = (luasTanah: number, timeRumah: string, priceRange: number[]) => {
+    let biayaPerMeter = 0;
+
+    // Logika biaya per meter sesuai tipe rumah
+    switch (timeRumah) {
+      case "sederhana":
+        biayaPerMeter = 3000000;
+        break;
+      case "mewah":
+        biayaPerMeter = 8000000;
+        break;
+      case "klasik":
+        biayaPerMeter = 5000000;
+        break;
+      default:
+        biayaPerMeter = 0;
+    }
+
+    const totalBiaya = luasTanah * biayaPerMeter;
+
+    if (totalBiaya >= priceRange[0] && totalBiaya <= priceRange[1]) {
+      return totalBiaya;
+    } else {
+      return "Biaya tidak sesuai dengan rentang harga yang dipilih.";
+    }
+  };
+
+  // TODO : Submit form
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    submitForm(data);
+    const rab = calculateRab(data.luasTanah, data.timeRumah, data.priceRange); // Calculate RAB
+    setRabResult(rab);
   };
 
   return (
@@ -129,6 +164,17 @@ export default function FormCreate() {
           <Button type="submit" className="w-full">Submit</Button>
         </form>
       </Form>
+      {rabResult !== null && (
+        <div className="mt-8">
+          <h2 className="text-xl font-bold">Hasil RAB:</h2>
+          <p>
+            Total Biaya:{" "}
+            {typeof rabResult === "number"
+              ? `IDR ${new Intl.NumberFormat("id-ID").format(rabResult)}`
+              : rabResult}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
