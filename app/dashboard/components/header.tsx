@@ -50,7 +50,7 @@ export default function Header() {
             className="rounded-full ring-2 ring-green-500"
           />
           <div className="flex flex-col">
-            <h1 className="text-xl">{user?.user_metadata.full_name}</h1>
+            <h1 className="text-xl text-white">{user?.user_metadata.full_name}</h1>
             <h1 className="text-xs underline text-slate-400">
               created at :
               {formatterTime(user?.identities?.[0]?.created_at || "")}

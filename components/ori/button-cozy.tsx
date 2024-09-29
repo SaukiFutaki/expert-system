@@ -23,7 +23,9 @@ export default function ButtonCozy({
     <button
       disabled={disabled}
       type={type}
-      className={`${className} px-6 py-2 font-medium   w-fit transition-all shadow-[3px_3px_0px_black] dark:shadow-white hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]`}
+      className={`${className} px-6 py-2 font-medium w-fit transition-all shadow-[3px_3px_0px_black] dark:shadow-white hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] ${
+        disabled ? "cursor-not-allowed opacity-50" : ""
+      }`}
     >
       {label}
       {children}
