@@ -26,12 +26,15 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 import { fredoka } from "./font";
+import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 
 type ConditionForm1Props = {
   onNext: () => void;
 };
 
 export default function ConditionForm1({ onNext }: ConditionForm1Props) {
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const form = useForm<z.infer<typeof firstCondition>>({
     resolver: zodResolver(firstCondition),
@@ -41,9 +44,10 @@ export default function ConditionForm1({ onNext }: ConditionForm1Props) {
   });
 
   const onSubmit = async (values: z.infer<typeof firstCondition>) => {
-    console.log(values);
-    submitFormStep1(values);
-    onNext();
+    startTransition(() => {
+      submitFormStep1(values);
+      onNext();
+    });
   };
 
   return (
@@ -103,9 +107,14 @@ export default function ConditionForm1({ onNext }: ConditionForm1Props) {
                     Back
                   </Button>
                 </div>
-                <Button type="submit" className="w-28">
-                  Next
-                </Button>
+           
+                  <Button type="submit" className="w-28">
+                    {isPending ? (
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                    ) : (
+                      "Next"
+                    )}
+                  </Button>
               </div>
             </form>
           </Form>

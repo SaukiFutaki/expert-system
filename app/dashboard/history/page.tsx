@@ -5,7 +5,12 @@ import { DataTable } from "./_components/data-table";
 
 export default async function Page() {
   const history = await getHistoryUser();
-  return <div>
-     {history && <DataTable columns={columns} data={history} />}
-  </div>;
+  return (
+    <div>
+      HISTORY
+      {/* <div>
+    {history && <DataTable columns={columns} data={history} />}
+    </div> */}
+    </div>
+  );
 }

@@ -18,6 +18,8 @@ import { fredoka } from "./font";
 import { Separator } from "@/components/ui/separator";
 import { submitFormStep3 } from "@/lib/action";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 
 type ConditionForm2Props = {
   onPrev: () => void;
@@ -28,6 +30,7 @@ export default function ConditionForm3({
   onPrev,
   onNext,
 }: ConditionForm2Props) {
+  const [isPending, startTransition] = useTransition();
     const router = useRouter()
   const form = useForm<z.infer<typeof thirdCondition>>({
     resolver: zodResolver(thirdCondition),
@@ -37,9 +40,14 @@ export default function ConditionForm3({
   });
 
   const onSubmit = (data: z.infer<typeof thirdCondition>) => {
-    console.log(data);
-    submitFormStep3(data);
-    onNext();
+    // console.log(data);
+    // submitFormStep3(data);
+    // onNext();
+    startTransition(() => {
+      submitFormStep3(data);
+      onNext();
+      
+    });
   };
 
   return (
@@ -109,9 +117,16 @@ export default function ConditionForm3({
                     Back
                   </Button>
                 </div>
-                <Button type="submit" className="w-28">
-                  Next
-                </Button>
+                {isPending ? (
+                  <Button disabled>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait
+                  </Button>
+                ) : (
+                  <Button type="submit" className="w-28">
+                    Next
+                  </Button>
+                )}
               </div>
             </form>
           </Form>

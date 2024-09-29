@@ -24,6 +24,8 @@ import { FormDescription } from "@/components/ui/form";
 import { z } from "zod";
 import { submitFinalForm } from "@/lib/action";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
 
 type ConditionForm4Props = {
   onPrev: () => void;
@@ -34,19 +36,21 @@ export default function ConditionForm4({
   onPrev,
   onNext,
 }: ConditionForm4Props) {
-    const router = useRouter()
-    const form = useForm<z.infer<typeof fourthCondition>>({
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const form = useForm<z.infer<typeof fourthCondition>>({
     resolver: zodResolver(fourthCondition),
     defaultValues: {
       jenisMaterial: "batako",
     },
-    })
+  });
 
-
-    const onSubmit = (data: z.infer<typeof fourthCondition>) => {
-        console.log(data);
-        submitFinalForm(data);
-    }
+  const onSubmit = (data: z.infer<typeof fourthCondition>) => {
+    startTransition(() => {
+      submitFinalForm(data);
+      onNext();
+    });
+  };
   return (
     <div className="flex items-center justify-center ">
       <Card className="w-[400px] md:w-[600px] lg:w-[700px] p-6 shadow-lg rounded-lg bg-white">
@@ -67,7 +71,7 @@ export default function ConditionForm4({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-lg">
-                        4. Pilih Jenis Material
+                      4. Pilih Jenis Material
                     </FormLabel>
                     <FormControl>
                       <RadioGroup
@@ -77,14 +81,8 @@ export default function ConditionForm4({
                         className="space-y-3"
                       >
                         <div className="flex items-center space-x-3">
-                          <RadioGroupItem
-                            value="batako"
-                            id="batako"
-                          />
-                          <label
-                            htmlFor="batako"
-                            className="text-md"
-                          >
+                          <RadioGroupItem value="batako" id="batako" />
+                          <label htmlFor="batako" className="text-md">
                             Batako
                           </label>
                         </div>
@@ -109,14 +107,21 @@ export default function ConditionForm4({
 
               {/* Previous and Next Buttons */}
               <div className="flex justify-between pt-6">
-              <div className="cursor-not-allowed">
+                <div className="cursor-not-allowed">
                   <Button disabled onClick={router.back} className="w-28 ">
                     Back
                   </Button>
                 </div>
-                <Button type="submit" className="w-28">
+                {isPending ? (
+                  <Button disabled>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Please wait
+                  </Button>
+                ) : (
+                  <Button type="submit" className="w-28">
                   Submit
-                </Button>
+                  </Button>
+                )}
               </div>
             </form>
           </Form>

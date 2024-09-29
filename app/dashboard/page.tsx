@@ -1,17 +1,17 @@
-"use client"
+
 import ButtonCozy from "@/components/ori/button-cozy";
 import { createClientServer } from "@/lib/supabase/server";
 import Header from "./components/header";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createNewHistory } from "@/lib/action";
-export default  function Page() {
-  // const supabase = await createClientServer();
-  // const { data } = await supabase.auth.getSession();
-  // console.log(data);
-  // if (!data) {
-  //   redirect("/login");
-  // }
+export default async function Page() {
+  const supabase = await createClientServer();
+  const { data } = await supabase.auth.getSession();
+  console.log(data);
+  if (!data) {
+    redirect("/login");
+  }
 
   return (
     <div className="flex flex-col items-center justify-center  p-4">
@@ -23,13 +23,13 @@ export default  function Page() {
           >
             Buat
           </ButtonCozy>
-          <button 
+          {/* <button 
           onClick={async () => {
            await createNewHistory();
           }}
           >
             Create History
-          </button>
+          </button> */}
         </Link>
         <Link href={"/dashboard/history"}>
           <ButtonCozy className="px-4 p y-2 bg-gray-500 text-white rounded hover:bg-gray-600">
