@@ -3,6 +3,7 @@ import { useUser } from "@/lib/store/user";
 import { createClient } from "@/lib/supabase/client";
 import { redirect, usePathname } from "next/navigation";
 import React from "react";
+import { RainbowButton } from "../ui/rainbow-button";
 
 interface Props {
   label?: string;
@@ -70,4 +71,24 @@ export function ButtonCozyV2Login({
       <div className="absolute inset-0 z-0 translate-x-0.5 translate-y-0.5 dark:bg-white bg-neutral-950"></div>
     </div>
   );
+}
+
+export function RainbowButtonLogin(){
+  const pathname = usePathname();
+  const supabase = createClient();
+  const handleLogin = async () => {
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: location.origin + "/auth/callback?next=" + pathname,
+      },
+    });
+    const { data } = await supabase.auth.getUser();
+   
+  };
+  return (
+    <RainbowButton onClick={handleLogin}>
+      Login
+    </RainbowButton>
+  )
 }
