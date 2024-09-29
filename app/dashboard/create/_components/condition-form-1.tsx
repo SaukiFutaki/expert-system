@@ -52,7 +52,7 @@ export default function ConditionForm1({ onNext }: ConditionForm1Props) {
 
   return (
     <div className="flex items-center justify-center">
-      <Card className="w-[400px] md:w-[600px] lg:w-[700px] p-6 shadow-lg rounded-lg bg-white">
+      <Card className="w-[400px] md:w-[600px] lg:w-[700px] p-6 shadow-lg rounded-lg bg-white dark:bg-black">
         <CardHeader className="pb-4">
           <h2
             className={`text-2xl font-bold text-center ${fredoka.className} text-emerald-600`}

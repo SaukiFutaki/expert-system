@@ -183,52 +183,52 @@ export const submitFinalForm = async (dataF: z.infer<typeof fourthCondition>) =>
   }
 
   // Now retrieve all conditions to insert into the final history
-  const { data: firstCondition } = await supabase
-    .from("first_condition")
-    .select("*")
-    .eq("user_id", user)
-    .single();
+  // const { data: firstCondition } = await supabase
+  //   .from("first_condition")
+  //   .select("*")
+  //   .eq("user_id", user)
+  //   .single();
 
-  const { data: secondCondition } = await supabase
-    .from("second_condition")
-    .select("*")
-    .eq("user_id", user)
-    .single();
+  // const { data: secondCondition } = await supabase
+  //   .from("second_condition")
+  //   .select("*")
+  //   .eq("user_id", user)
+  //   .single();
 
-  const { data: thirdCondition } = await supabase
-    .from("third_condition")
-    .select("*")
-    .eq("user_id", user)
-    .single();
+  // const { data: thirdCondition } = await supabase
+  //   .from("third_condition")
+  //   .select("*")
+  //   .eq("user_id", user)
+  //   .single();
 
-  const { data: fourthConditionData } = await supabase
-    .from("fourth_condition")
-    .select("*")
-    .eq("user_id", user)
-    .single();
+  // const { data: fourthConditionData } = await supabase
+  //   .from("fourth_condition")
+  //   .select("*")
+  //   .eq("user_id", user)
+  //   .single();
 
-  if (!firstCondition || !secondCondition || !thirdCondition || !fourthConditionData) {
-    console.error("Error retrieving conditions for final submission.",error.name);
-    return { success: false, message: "Error retrieving conditions" };
-  }
+  // if (!firstCondition || !secondCondition || !thirdCondition || !fourthConditionData) {
+  //   console.error("Error retrieving conditions for final submission.",error.name);
+  //   return { success: false, message: "Error retrieving conditions" };
+  // }
 
   // Update empty history with all the conditions
-  const { error: historyUpdateError } = await supabase
-    .from("history")
-    .update({
+  // const { error: historyUpdateError } = await supabase
+  //   .from("history")
+  //   .update({
     
-      tipe_rumah: firstCondition.tipe_rumah,
-      jenis_lantai: secondCondition.jenis_lantai,
-      jenis_atap: thirdCondition.jenis_atap,
-      jenis_material: fourthConditionData.jenis_material,
+  //     tipe_rumah: firstCondition.tipe_rumah,
+  //     jenis_lantai: secondCondition.jenis_lantai,
+  //     jenis_atap: thirdCondition.jenis_atap,
+  //     jenis_material: fourthConditionData.jenis_material,
      
-    })
-    .eq("user_id", user);
+  //   })
+  //   .eq("user_id", user);
 
-  if (historyUpdateError) {
-    console.error("Error updating history:", historyUpdateError);
-    return { success: false, message: "Error updating history" };
-  }
+  // if (historyUpdateError) {
+  //   console.error("Error updating history:", historyUpdateError);
+  //   return { success: false, message: "Error updating history" };
+  // }
 
   return { success: true, message: "Multi-step form submitted and history updated successfully!" };
 };

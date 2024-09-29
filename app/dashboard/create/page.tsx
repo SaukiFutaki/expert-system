@@ -32,7 +32,7 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink>Condition 1</BreadcrumbLink>
+              <BreadcrumbLink className="text-green-500">Condition 1</BreadcrumbLink>
             </BreadcrumbItem>
             {step > 1 && (
               <>
@@ -40,7 +40,7 @@ export default function Page() {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbLink>Condition 2</BreadcrumbLink>
+                  <BreadcrumbLink  className="text-green-500">Condition 2</BreadcrumbLink>
                 </BreadcrumbItem>
               </>
             )}
@@ -50,7 +50,7 @@ export default function Page() {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Condition 3</BreadcrumbPage>
+                  <BreadcrumbPage className="text-green-500">Condition 3</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
             )}
@@ -60,7 +60,7 @@ export default function Page() {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Condition 4</BreadcrumbPage>
+                  <BreadcrumbPage className="text-green-500">Condition 4</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
             )}
@@ -70,7 +70,7 @@ export default function Page() {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Result</BreadcrumbPage>
+                  <BreadcrumbPage className="text-green-500">Result</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
             )}
@@ -88,7 +88,15 @@ export default function Page() {
         {step == 4 && (
           <ConditionForm4 onPrev={goToPreviousStep} onNext={goToNextStep} />
         )}
-        {step > 4 && <Result  />}
+        {step > 4 && (
+          <Result
+            projectName="Demo result title"
+            analysisType="Sample Analysis"
+          costEstimate={1000000}
+           budgetUtilization={0.75}
+            additionalNotes="demo : lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quas. " 
+          />
+        )}
       </div>
     </div>
   );
