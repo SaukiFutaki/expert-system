@@ -18,7 +18,7 @@ export default async function Page() {
       <div className="mt-8 space-x-4">
         <Link href={"/dashboard/create"}>
           <ButtonCozy className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" >
-          [30/9, 00.16] Bay: Rencanakan rumahmu
+         Rencanakan Rumahmu
           </ButtonCozy>
           {/* <button 
           onClick={async () => {
