@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, RectangleHorizontal, Blocks } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
 
 export default function CivilExpertForm() {
   const [formData, setFormData] = React.useState({
@@ -188,7 +189,7 @@ Berikan analisis mendetail yang mencakup:
               className="w-full p-2 border rounded"
             />
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" disabled>
               Analisis Konstruksi
             </Button>
           </form>
@@ -207,7 +208,9 @@ Berikan analisis mendetail yang mencakup:
                 <p className="text-sm font-medium mb-1">
                   {m.role === "user" ? "Permintaan Analisis" : "Hasil Analisis"}
                 </p>
-                <div className="text-sm whitespace-pre-wrap">{m.content}</div>
+                <ReactMarkdown className="text-sm whitespace-pre-wrap">
+                  {m.content}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
