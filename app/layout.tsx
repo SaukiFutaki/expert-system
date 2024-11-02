@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Navbar from "@/components/nav/nav";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import SessionProvider from "@/components/providers/session-provider";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Fira_Code({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <NextTopLoader color="#059669" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

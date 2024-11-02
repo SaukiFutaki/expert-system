@@ -4,6 +4,9 @@ import Header from "./components/header";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createNewHistory } from "@/lib/action";
+import { Button } from "@/components/ui/button";
+
+
 export default async function Page() {
   const supabase = await createClientServer();
   const { data } = await supabase.auth.getSession();
@@ -17,9 +20,10 @@ export default async function Page() {
       <Header />
       <div className="mt-8 space-x-4">
         <Link href={"/dashboard/create"}>
-          <ButtonCozy className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" >
+          <ButtonCozy  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" >
          Rencanakan Rumahmu
           </ButtonCozy>
+        
           {/* <button 
           onClick={async () => {
            await createNewHistory();
@@ -28,6 +32,8 @@ export default async function Page() {
             Create History
           </button> */}
         </Link>
+
+        
         <Link href={"/dashboard/history"}>
           <ButtonCozy className="px-4 p y-2 bg-gray-500 text-white rounded hover:bg-gray-600" disabled>
             History
@@ -37,3 +43,5 @@ export default async function Page() {
     </div>
   );
 }
+
+

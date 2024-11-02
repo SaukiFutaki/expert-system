@@ -89,3 +89,153 @@ export default function Result({
     </div>
   );
 }
+
+
+
+// import { useState } from 'react';
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+// import { Badge } from "@/components/ui/badge";
+// import { Progress } from "@/components/ui/progress";
+// import { AlertTriangle, CheckCircle, Info } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+
+// const ResultAnalysis = () => {
+//   const [analysis] = useState({
+//     projectName: "Analisis Konstruksi Rumah",
+//     analysisType: "Analisis Teknis",
+//     costEstimate: 250000000,
+//     budgetUtilization: 0.82,
+//     materialScore: 0.75,
+//     structuralScore: 0.90,
+//     additionalNotes: "Perhatikan kebutuhan maintenance berkala untuk material yang dipilih."
+//   });
+
+//   const getBudgetColor = (utilization: number) => {
+//     if (utilization < 0.5) return "bg-red-500";
+//     if (utilization < 0.75) return "bg-yellow-500";
+//     return "bg-green-500";
+//   };
+
+//   const getScoreIcon = (score: number) => {
+//     if (score < 0.5) return <AlertTriangle className="h-5 w-5 text-red-500" />;
+//     if (score < 0.75) return <Info className="h-5 w-5 text-yellow-500" />;
+//     return <CheckCircle className="h-5 w-5 text-green-500" />;
+//   };
+
+//   return (
+//     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+//       <Card className="w-full max-w-3xl shadow-lg">
+//         <CardHeader className="space-y-1">
+//           <div className="flex items-center justify-between">
+//             <CardTitle className="text-2xl font-bold">{analysis.projectName}</CardTitle>
+//             <Badge variant="outline" className="ml-2">
+//               {analysis.analysisType}
+//             </Badge>
+//           </div>
+//           <CardDescription>
+//             Hasil Analisis Teknis dan Rekomendasi
+//           </CardDescription>
+//         </CardHeader>
+
+//         <CardContent className="space-y-6">
+//           {/* Estimasi Biaya */}
+//           <div className="space-y-2">
+//             <h3 className="font-semibold">Estimasi Biaya Proyek</h3>
+//             <p className="text-lg font-medium">
+//               Rp {analysis.costEstimate.toLocaleString()} IDR
+//             </p>
+//           </div>
+
+//           {/* Skor Material */}
+//           <div className="space-y-2">
+//             <div className="flex items-center justify-between">
+//               <span className="font-medium">Kesesuaian Material</span>
+//               <span>{(analysis.materialScore * 100).toFixed(0)}%</span>
+//             </div>
+//             <Progress 
+//               value={analysis.materialScore * 100} 
+//               className={getBudgetColor(analysis.materialScore)}
+//             />
+//             <div className="flex items-center space-x-2">
+//               {getScoreIcon(analysis.materialScore)}
+//               <span className="text-sm text-gray-600">
+//                 {analysis.materialScore >= 0.75 
+//                   ? "Material yang dipilih sangat sesuai dengan spesifikasi"
+//                   : analysis.materialScore >= 0.5
+//                   ? "Beberapa penyesuaian material mungkin diperlukan"
+//                   : "Perlu peninjauan ulang pemilihan material"}
+//               </span>
+//             </div>
+//           </div>
+
+//           {/* Skor Struktural */}
+//           <div className="space-y-2">
+//             <div className="flex items-center justify-between">
+//               <span className="font-medium">Analisis Struktural</span>
+//               <span>{(analysis.structuralScore * 100).toFixed(0)}%</span>
+//             </div>
+//             <Progress 
+//               value={analysis.structuralScore * 100} 
+//               className={getBudgetColor(analysis.structuralScore)}
+//             />
+//             <div className="flex items-center space-x-2">
+//               {getScoreIcon(analysis.structuralScore)}
+//               <span className="text-sm text-gray-600">
+//                 {analysis.structuralScore >= 0.75 
+//                   ? "Struktur bangunan optimal dan aman"
+//                   : analysis.structuralScore >= 0.5
+//                   ? "Beberapa penyesuaian struktur disarankan"
+//                   : "Perlu peninjauan ulang desain struktural"}
+//               </span>
+//             </div>
+//           </div>
+
+//           {/* Penggunaan Anggaran */}
+//           <div className="space-y-2">
+//             <div className="flex items-center justify-between">
+//               <span className="font-medium">Efisiensi Anggaran</span>
+//               <span>{(analysis.budgetUtilization * 100).toFixed(0)}%</span>
+//             </div>
+//             <Progress 
+//               value={analysis.budgetUtilization * 100} 
+//               className={getBudgetColor(analysis.budgetUtilization)}
+//             />
+//             <div className="flex items-center space-x-2">
+//               {getScoreIcon(analysis.budgetUtilization)}
+//               <span className="text-sm text-gray-600">
+//                 {analysis.budgetUtilization >= 0.75 
+//                   ? "Penggunaan anggaran optimal"
+//                   : analysis.budgetUtilization >= 0.5
+//                   ? "Penggunaan anggaran cukup efisien"
+//                   : "Perlu optimalisasi penggunaan anggaran"}
+//               </span>
+//             </div>
+//           </div>
+//         </CardContent>
+
+//         <CardFooter className="flex flex-col space-y-4">
+//           <p className="text-sm text-gray-600 italic">
+//             {analysis.additionalNotes}
+//           </p>
+//           <div className="flex flex-col w-full space-y-2">
+//             <Button className="w-full" variant="outline" disabled>
+//               Download Laporan Lengkap
+//             </Button>
+//             <Button className="w-full" onClick={() => window.history.back()}>
+//               Kembali
+//             </Button>
+//           </div>
+//         </CardFooter>
+//       </Card>
+//     </div>
+//   );
+// };
+
+// export default ResultAnalysis;

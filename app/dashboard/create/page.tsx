@@ -92,7 +92,7 @@ export default function Page() {
           <Result
             projectName="Demo result title"
             analysisType="Sample Analysis"
-          costEstimate={1000000}
+            costEstimate={1000000}
            budgetUtilization={0.75}
             additionalNotes="demo : lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quas. " 
           />

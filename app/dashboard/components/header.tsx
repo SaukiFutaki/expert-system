@@ -5,13 +5,16 @@ import { useUser } from "@/lib/store/user";
 import { createClient } from "@/lib/supabase/client";
 import ShimmerButton from "@/components/magicui/button-shimmer";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
+
+
 export default function Header() {
   const user = useUser((state) => state.user);
+  const router = useRouter();
 
-  console.log(user?.identities?.[0]?.last_sign_in_at);
-  console.log(user?.identities?.[0]?.created_at);
+  // console.log(user?.identities?.[0]?.last_sign_in_at);
+  // console.log(user?.identities?.[0]?.created_at);
 
   const setUser = useUser((state) => state.setUser);
   const supabase = createClient();
@@ -24,6 +27,7 @@ export default function Header() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(undefined);
+    router.refresh();
   };
 
   const formatterTime = (time: string) => {
