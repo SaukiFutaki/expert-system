@@ -23,7 +23,7 @@ export default async function Home() {
         <p className="max-w-xl mx-auto text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center">
           Dapatkan berbagai nasihat terbaik dari para ahli, mulai dari ahli
           teknik sipil, konsultan konstruksi, hingga pakar perencanaan bangunan,
-          secara gratis.
+          secara gratis<span className="text-red-500">(bayar sih)</span>.
         </p>
       </BackgroundLines>
     </div>

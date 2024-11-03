@@ -16,7 +16,6 @@ import { z } from "zod";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { fredoka } from "./font/index";
-import { submitFormStep2 } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
@@ -41,7 +40,7 @@ export default function ConditionForm2({
 
   const onSubmit = (data: z.infer<typeof secondCondition>) => {
     startTransition(() => {
-      submitFormStep2(data);
+      // submitFormStep2(data);
       onNext();
     });
   };

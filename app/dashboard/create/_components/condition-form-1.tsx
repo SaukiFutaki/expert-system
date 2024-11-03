@@ -19,7 +19,6 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import {  submitFormStep1 } from "@/lib/action";
 import { firstCondition } from "@/schema/condition";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -45,7 +44,7 @@ export default function ConditionForm1({ onNext }: ConditionForm1Props) {
 
   const onSubmit = async (values: z.infer<typeof firstCondition>) => {
     startTransition(() => {
-      submitFormStep1(values);
+      // submitFormStep1(values);
       onNext();
     });
   };

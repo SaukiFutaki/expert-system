@@ -7,22 +7,15 @@ import ShimmerButton from "@/components/magicui/button-shimmer";
 import { revalidatePath } from "next/cache";
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
+import { Sparkles } from "lucide-react";
 
 
 export default function Header() {
   const user = useUser((state) => state.user);
   const router = useRouter();
 
-  // console.log(user?.identities?.[0]?.last_sign_in_at);
-  // console.log(user?.identities?.[0]?.created_at);
-
   const setUser = useUser((state) => state.setUser);
   const supabase = createClient();
-
-  //   const supabase = await createClientServer();
-  //   const { data,error } = await supabase.auth.getUser();
-
-  //   console.log(data);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -54,14 +47,19 @@ export default function Header() {
             className="rounded-full ring-2 ring-green-500"
           />
           <div className="flex flex-col">
-            <h1 className="text-xl text-white">{user?.user_metadata.full_name}</h1>
+            <h1 className="text-xl text-white">
+              {user?.user_metadata.full_name}
+            </h1>
             <h1 className="text-xs underline text-slate-400">
               created at :
               {formatterTime(user?.identities?.[0]?.created_at || "")}
             </h1>
           </div>
         </div>
-        <ShimmerButtonLogOut onClick={handleLogout} />
+        <div className="flex flex-row gap-2">
+          <ShimmerButtonCreate onClick={() => router.push("/dashboard/generate")} />
+          <ShimmerButtonLogOut onClick={handleLogout} />
+        </div>
       </div>
     </div>
   );
@@ -76,6 +74,20 @@ function ShimmerButtonLogOut({ onClick }: { onClick?: () => void }) {
       <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
       <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full  px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
         Logout
+      </span>
+    </button>
+  );
+}
+
+function ShimmerButtonCreate({ onClick }: { onClick?: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+    >
+      <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+      <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl gap-1">
+      <Sparkles />     Generate
       </span>
     </button>
   );
