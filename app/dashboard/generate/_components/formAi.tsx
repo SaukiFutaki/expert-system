@@ -164,7 +164,7 @@ export default function FormAi() {
         className="w-full p-2 border rounded"
       />
 
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full" disabled>
         Analisis Konstruksi
       </Button>
 
