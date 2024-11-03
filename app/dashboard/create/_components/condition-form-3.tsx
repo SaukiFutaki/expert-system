@@ -16,7 +16,7 @@ import { z } from "zod";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { fredoka } from "./font";
 import { Separator } from "@/components/ui/separator";
-import { submitFormStep3 } from "@/lib/action";
+// import { submitFormStep3 } from "@/lib/action";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
@@ -44,7 +44,7 @@ export default function ConditionForm3({
     // submitFormStep3(data);
     // onNext();
     startTransition(() => {
-      submitFormStep3(data);
+      // submitFormStep3(data);
       onNext();
       
     });
