@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Building2, RectangleHorizontal, Blocks } from "lucide-react";
+import { Building2, RectangleHorizontal, Blocks, House, } from "lucide-react";
 
 import { IFormData } from "@/types";
 import { useChat } from "ai/react";
@@ -71,7 +71,7 @@ export default function FormAi() {
       {/* Tipe Rumah */}
       <div className="space-y-2">
         <label className="text-sm font-medium flex items-center gap-2">
-          <Building2 className="h-4 w-4" />
+          <House className="h-4 w-4" />
           Tipe Rumah
         </label>
         <Select
@@ -164,7 +164,7 @@ export default function FormAi() {
         className="w-full p-2 border rounded"
       />
 
-      <Button type="submit" className="w-full" disabled>
+      <Button type="submit" className="w-full" >
         Analisis Konstruksi
       </Button>
 
