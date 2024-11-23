@@ -11,10 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IConstructionAnalysis } from "@/types";
+import Link from "next/link";
 
 // Define the new type with the updated columns
-
-
 
 export const columns: ColumnDef<IConstructionAnalysis>[] = [
   {
@@ -50,27 +49,37 @@ export const columns: ColumnDef<IConstructionAnalysis>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div className="capitalize">{row.getValue("tipeRumah")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("tipeRumah")}</div>
+    ),
   },
   {
     accessorKey: "jenisLantai",
     header: "Jenis Lantai",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("jenisLantai")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("jenisLantai")}</div>
+    ),
   },
   {
     accessorKey: "jenisAtap",
     header: "Jenis Atap",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("jenisAtap")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("jenisAtap")}</div>
+    ),
   },
   {
     accessorKey: "jenisMaterial",
     header: "Jenis Material",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("jenisMaterial")}</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("jenisMaterial")}</div>
+    ),
   },
   {
     accessorKey: "promptresult",
     header: "Result",
-    cell: ({ row }) => <div className="truncate">{row.getValue("promptresult")}</div>,
+    cell: ({ row }) => (
+      <div className="truncate">{row.getValue("promptresult")}</div>
+    ),
   },
   {
     id: "actions",
@@ -93,7 +102,9 @@ export const columns: ColumnDef<IConstructionAnalysis>[] = [
               Copy Analysis ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Details</DropdownMenuItem>
+            <Link href={`/result/${analysis.id}`}>
+              <DropdownMenuItem>View Details</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

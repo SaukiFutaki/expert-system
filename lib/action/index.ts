@@ -17,3 +17,16 @@ export async function getDataConstruction(){
 
   return data
 }
+
+
+
+export async function  getResultByIdUser(id: string){
+  const supabase = await createClientServer()
+
+  const { data, error } = await supabase
+  .from('construction_analysis') // Sesuaikan nama tabel jika berbeda
+  .select('id, user_id, tipeRumah, jenisLantai, jenisAtap, jenisMaterial, prompt_result, created_at')
+  .eq('id', id)
+
+  return data
+}
